@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, CircularProgress, CircularProgressLabel, VStack, Text, useMediaQuery } from '@chakra-ui/react';
+import { Box, Button, CircularProgress, CircularProgressLabel, VStack, Text, Input, FormControl, FormLabel } from '@chakra-ui/react';
 
 function App() {
   const [minutes, setMinutes] = useState(25);
@@ -7,9 +7,13 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const [progress, setProgress] = useState(100);
+  const [workMinutes, setWorkMinutes] = useState(25);
+  const [breakMinutes, setBreakMinutes] = useState(5);
 
-  // Utilisation de useMediaQuery pour ajuster la disposition des boutons en fonction de la taille de l'écran
-  const [isLargerThan600] = useMediaQuery("(min-width: 600px)");
+  const playSound = () => {
+    const audio = new Audio('/assets/alarm.mp3');
+    audio.play();
+  };
 
   useEffect(() => {
     let interval = null;
@@ -17,11 +21,12 @@ function App() {
     if (isActive) {
       interval = setInterval(() => {
         if (seconds === 0 && minutes === 0) {
+          playSound();
           if (isBreak) {
-            setMinutes(25);
+            setMinutes(workMinutes);
             setIsBreak(false);
           } else {
-            setMinutes(5);
+            setMinutes(breakMinutes);
             setIsBreak(true);
           }
         } else if (seconds === 0) {
@@ -31,7 +36,7 @@ function App() {
           setSeconds((prevSeconds) => prevSeconds - 1);
         }
 
-        const totalSeconds = isBreak ? 5 * 60 : 25 * 60;
+        const totalSeconds = isBreak ? breakMinutes * 60 : workMinutes * 60;
         const remainingSeconds = minutes * 60 + seconds;
         setProgress((remainingSeconds / totalSeconds) * 100);
       }, 1000);
@@ -40,14 +45,45 @@ function App() {
     }
 
     return () => clearInterval(interval);
-  }, [isActive, seconds, minutes, isBreak]);
+  }, [isActive, seconds, minutes, isBreak, workMinutes, breakMinutes]);
 
   const resetTimer = () => {
     setIsActive(false);
     setIsBreak(false);
-    setMinutes(25);
+    setMinutes(workMinutes);
     setSeconds(0);
     setProgress(100);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("workMinutes", workMinutes);
+    localStorage.setItem("breakMinutes", breakMinutes);
+  }, [workMinutes, breakMinutes]);
+
+  useEffect(() => {
+    const savedWorkMinutes = localStorage.getItem("workMinutes");
+    const savedBreakMinutes = localStorage.getItem("breakMinutes");
+    if (savedWorkMinutes) setWorkMinutes(Number(savedWorkMinutes));
+    if (savedBreakMinutes) setBreakMinutes(Number(savedBreakMinutes));
+  }, []);
+
+  // Gestion de l'entrée des valeurs sans afficher un "0" persistant
+  const handleWorkMinutesChange = (e) => {
+    const value = e.target.value;
+    if (value === "" || Number(value) < 0) {
+      setWorkMinutes("");
+    } else {
+      setWorkMinutes(Number(value));
+    }
+  };
+
+  const handleBreakMinutesChange = (e) => {
+    const value = e.target.value;
+    if (value === "" || Number(value) < 0) {
+      setBreakMinutes("");
+    } else {
+      setBreakMinutes(Number(value));
+    }
   };
 
   return (
@@ -66,12 +102,12 @@ function App() {
           {isBreak ? 'Pause ! 💤' : 'Temps de Concentration ! 🚀'}
         </Text>
 
-        <Box position="relative" display="inline-flex" >
+        <Box position="relative" display="inline-flex">
           <CircularProgress
             value={progress}
             size="200px"
-            thickness="2px" // Réduit l'épaisseur du cercle
-            color="cyan.900" // Utilise la couleur #065666
+            thickness="2px"
+            color="cyan.900"
             trackColor="gray.200"
             capIsRound
           >
@@ -81,9 +117,43 @@ function App() {
           </CircularProgress>
         </Box>
 
+        {/* Champs de personnalisation des durées */}
+        <VStack spacing={4} align="center" width="100%">
+          <FormControl>
+            <FormLabel color="gray.700" fontWeight="bold">Durée de travail (minutes)</FormLabel>
+            <Input
+              placeholder="Durée de travail"
+              value={workMinutes}
+              onChange={handleWorkMinutesChange}
+              size="sm"
+              type="number"
+              width="100%"
+              focusBorderColor="gray.400"
+              borderColor="gray.400"
+              color="gray.200"
+              _placeholder={{ color: 'gray.600' }}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel color="gray.700" fontWeight="bold">Durée de pause (minutes)</FormLabel>
+            <Input
+              placeholder="Durée de pause"
+              value={breakMinutes}
+              onChange={handleBreakMinutesChange}
+              size="sm"
+              type="number"
+              width="100%"
+              focusBorderColor="gray.400"
+              borderColor="gray.400"
+              color="gray.200"
+              _placeholder={{ color: 'gray.600' }}
+            />
+          </FormControl>
+        </VStack>
+
         <Box
           display="flex"
-          flexDirection={isLargerThan600 ? "row" : "column"} // Affichage en ligne ou en colonne selon la taille de l'écran
+          flexDirection="row"
           gap={4}
         >
           <Button
