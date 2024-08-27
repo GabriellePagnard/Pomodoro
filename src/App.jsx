@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, CircularProgress, CircularProgressLabel, VStack, Text } from '@chakra-ui/react';
+import { Box, Button, CircularProgress, CircularProgressLabel, VStack, Text, useMediaQuery } from '@chakra-ui/react';
 
 function App() {
   const [minutes, setMinutes] = useState(25);
@@ -7,6 +7,9 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const [progress, setProgress] = useState(100);
+
+  // Utilisation de useMediaQuery pour ajuster la disposition des boutons en fonction de la taille de l'écran
+  const [isLargerThan600] = useMediaQuery("(min-width: 600px)");
 
   useEffect(() => {
     let interval = null;
@@ -59,32 +62,49 @@ function App() {
       boxShadow="md"
     >
       <VStack spacing={8} align="center">
-        <Text fontSize="3xl" fontWeight="bold">
+        <Text fontSize="3xl" fontWeight="bold" color="cyan.900">
           {isBreak ? 'Pause ! 💤' : 'Temps de Concentration ! 🚀'}
         </Text>
 
-        <Box position="relative" display="inline-flex">
+        <Box position="relative" display="inline-flex" >
           <CircularProgress
             value={progress}
             size="200px"
-            thickness="6px"
-            color="cyan.500"
+            thickness="2px" // Réduit l'épaisseur du cercle
+            color="cyan.900" // Utilise la couleur #065666
             trackColor="gray.200"
+            capIsRound
           >
-            <CircularProgressLabel fontSize="2xl" color="cyan.800">
+            <CircularProgressLabel fontSize="2xl" fontWeight="bold" color="cyan.900">
               {`${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`}
             </CircularProgressLabel>
           </CircularProgress>
         </Box>
 
-        <VStack spacing={4}>
-          <Button colorScheme="teal" onClick={() => setIsActive(!isActive)}>
+        <Box
+          display="flex"
+          flexDirection={isLargerThan600 ? "row" : "column"} // Affichage en ligne ou en colonne selon la taille de l'écran
+          gap={4}
+        >
+          <Button
+            colorScheme="purple"
+            bg="purple.900"
+            size="lg"
+            textTransform="uppercase"
+            onClick={() => setIsActive(!isActive)}
+          >
             {isActive ? 'Pause' : 'Démarrer'}
           </Button>
-          <Button colorScheme="red" onClick={resetTimer}>
+          <Button
+            colorScheme="pink"
+            bg="pink.900"
+            size="lg"
+            textTransform="uppercase"
+            onClick={resetTimer}
+          >
             Réinitialiser
           </Button>
-        </VStack>
+        </Box>
       </VStack>
     </Box>
   );
