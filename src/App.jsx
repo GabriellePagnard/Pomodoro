@@ -10,6 +10,7 @@ function App() {
   const [workMinutes, setWorkMinutes] = useState(25);
   const [breakMinutes, setBreakMinutes] = useState(5);
 
+  // Son d'alerte à jouer lorsque le timer se termine
   const playSound = () => {
     const audio = new Audio('/assets/alarm.mp3');
     audio.play();
@@ -67,25 +68,6 @@ function App() {
     if (savedBreakMinutes) setBreakMinutes(Number(savedBreakMinutes));
   }, []);
 
-  // Gestion de l'entrée des valeurs sans afficher un "0" persistant
-  const handleWorkMinutesChange = (e) => {
-    const value = e.target.value;
-    if (value === "" || Number(value) < 0) {
-      setWorkMinutes("");
-    } else {
-      setWorkMinutes(Number(value));
-    }
-  };
-
-  const handleBreakMinutesChange = (e) => {
-    const value = e.target.value;
-    if (value === "" || Number(value) < 0) {
-      setBreakMinutes("");
-    } else {
-      setBreakMinutes(Number(value));
-    }
-  };
-
   return (
     <Box
       display="inline-flex"
@@ -106,12 +88,12 @@ function App() {
           <CircularProgress
             value={progress}
             size="200px"
-            thickness="2px"
-            color="cyan.900"
+            thickness="4px"
+            color={isBreak ? "pink.500" : "cyan.900"} // Change la couleur en fonction de l'état isBreak
             trackColor="gray.200"
             capIsRound
           >
-            <CircularProgressLabel fontSize="2xl" fontWeight="bold" color="cyan.900">
+            <CircularProgressLabel fontSize="2xl" fontWeight="bold" color={isBreak ? "pink.500" : "cyan.900"}>
               {`${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`}
             </CircularProgressLabel>
           </CircularProgress>
@@ -120,11 +102,11 @@ function App() {
         {/* Champs de personnalisation des durées */}
         <VStack spacing={4} align="center" width="100%">
           <FormControl>
-            <FormLabel color="gray.700" fontWeight="bold">Durée de travail (minutes)</FormLabel>
+            <FormLabel color="gray.800" fontWeight="bold">Durée de travail (minutes)</FormLabel>
             <Input
               placeholder="Durée de travail"
               value={workMinutes}
-              onChange={handleWorkMinutesChange}
+              onChange={(e) => setWorkMinutes(Number(e.target.value))}
               size="sm"
               type="number"
               width="100%"
@@ -135,11 +117,11 @@ function App() {
             />
           </FormControl>
           <FormControl>
-            <FormLabel color="gray.700" fontWeight="bold">Durée de pause (minutes)</FormLabel>
+            <FormLabel color="gray.800" fontWeight="bold">Durée de pause (minutes)</FormLabel>
             <Input
               placeholder="Durée de pause"
               value={breakMinutes}
-              onChange={handleBreakMinutesChange}
+              onChange={(e) => setBreakMinutes(Number(e.target.value))}
               size="sm"
               type="number"
               width="100%"
