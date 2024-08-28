@@ -1,4 +1,3 @@
-# React + Vite
 # 🚀 Pomodoro 🚀
 
 <br>
@@ -34,6 +33,13 @@ Voici à quoi ressemble l'application :
 ![screenshot ordinateur chrono boulot](/images/screenshot_descktop_chrono_boulot.jpg)   
 
 ![screenshot ordinateur chrono pause](/images/screenshot_descktop_chrono_pause.jpg)   
+
+<br>
+<br>
+
+[Démo vidéo du projet sur ordinateur 🎥](https://www.youtube.com/watch?v=4AXiL1ukxo8)
+
+[Démo vidéo du projet sur mobile 🎥]()
 
 <br>
 <br>

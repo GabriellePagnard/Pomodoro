@@ -120,7 +120,7 @@ function App() {
       boxShadow="md"
     >
       <VStack spacing={8} align="center">
-        <Text fontSize="3xl" fontWeight="bold" color="cyan.900">
+        <Text fontSize="3xl" fontWeight="bold" color="cyan.900" textAlign={{ base: "center", md: "left" }}>
           {isBreak ? 'Pause ! 💤' : 'Temps de Concentration ! 🚀'}
         </Text>
 
