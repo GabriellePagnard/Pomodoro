@@ -1,4 +1,32 @@
-import React, { useState, useEffect } from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
 import { Box, Button, CircularProgress, CircularProgressLabel, VStack, Text, Input, FormControl, FormLabel } from '@chakra-ui/react';
 
 /**
@@ -28,7 +56,7 @@ function App() {
 
     if (isActive) {
       interval = setInterval(() => {
-        if (seconds === 0 && minutes === 0) {
+        if (seconds === 0 &amp;&amp; minutes === 0) {
           playSound();
           // Alterne entre le temps de travail et de pause
           if (isBreak) {
@@ -52,7 +80,7 @@ function App() {
         const remainingSeconds = minutes * 60 + seconds;
         setProgress((remainingSeconds / totalSeconds) * 100);
       }, 1000);
-    } else if (!isActive && minutes !== 0 && seconds !== 0) {
+    } else if (!isActive &amp;&amp; minutes !== 0 &amp;&amp; seconds !== 0) {
       clearInterval(interval);
     }
 
@@ -83,7 +111,7 @@ function App() {
   }, []);
 
   return (
-    <Box
+    &lt;Box
       display="inline-flex"
       flexDirection="column"
       alignItems="center"
@@ -93,13 +121,13 @@ function App() {
       p={6}
       boxShadow="md"
     >
-      <VStack spacing={8} align="center">
-        <Text fontSize="3xl" fontWeight="bold" color="cyan.900">
+      &lt;VStack spacing={8} align="center">
+        &lt;Text fontSize="3xl" fontWeight="bold" color="cyan.900">
           {isBreak ? 'Pause ! 💤' : 'Temps de Concentration ! 🚀'}
-        </Text>
+        &lt;/Text>
 
-        <Box position="relative" display="inline-flex">
-          <CircularProgress
+        &lt;Box position="relative" display="inline-flex">
+          &lt;CircularProgress
             value={progress}
             size="200px"
             thickness="4px"
@@ -107,17 +135,17 @@ function App() {
             trackColor="gray.200"
             capIsRound
           >
-            <CircularProgressLabel fontSize="2xl" fontWeight="bold" color={isBreak ? "pink.500" : "cyan.900"}>
-              {`${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`}
-            </CircularProgressLabel>
-          </CircularProgress>
-        </Box>
+            &lt;CircularProgressLabel fontSize="2xl" fontWeight="bold" color={isBreak ? "pink.500" : "cyan.900"}>
+              {`${minutes &lt; 10 ? `0${minutes}` : minutes}:${seconds &lt; 10 ? `0${seconds}` : seconds}`}
+            &lt;/CircularProgressLabel>
+          &lt;/CircularProgress>
+        &lt;/Box>
 
         {/* Champs de personnalisation des durées */}
-        <VStack spacing={4} align="center" width="100%">
-          <FormControl>
-            <FormLabel color="gray.800" fontWeight="bold">Durée de travail (minutes)</FormLabel>
-            <Input
+        &lt;VStack spacing={4} align="center" width="100%">
+          &lt;FormControl>
+            &lt;FormLabel color="gray.800" fontWeight="bold">Durée de travail (minutes)&lt;/FormLabel>
+            &lt;Input
               placeholder="Durée de travail"
               value={workMinutes}
               onChange={(e) => setWorkMinutes(Number(e.target.value))}
@@ -129,10 +157,10 @@ function App() {
               color="gray.200"
               _placeholder={{ color: 'gray.600' }}
             />
-          </FormControl>
-          <FormControl>
-            <FormLabel color="gray.800" fontWeight="bold">Durée de pause (minutes)</FormLabel>
-            <Input
+          &lt;/FormControl>
+          &lt;FormControl>
+            &lt;FormLabel color="gray.800" fontWeight="bold">Durée de pause (minutes)&lt;/FormLabel>
+            &lt;Input
               placeholder="Durée de pause"
               value={breakMinutes}
               onChange={(e) => setBreakMinutes(Number(e.target.value))}
@@ -144,15 +172,15 @@ function App() {
               color="gray.200"
               _placeholder={{ color: 'gray.600' }}
             />
-          </FormControl>
-        </VStack>
+          &lt;/FormControl>
+        &lt;/VStack>
 
-        <Box
+        &lt;Box
           display="flex"
           flexDirection="row"
           gap={4}
         >
-          <Button
+          &lt;Button
             colorScheme="purple"
             bg="purple.900"
             size="lg"
@@ -160,8 +188,8 @@ function App() {
             onClick={() => setIsActive(!isActive)}
           >
             {isActive ? 'Pause' : 'Démarrer'}
-          </Button>
-          <Button
+          &lt;/Button>
+          &lt;Button
             colorScheme="pink"
             bg="pink.900"
             size="lg"
@@ -169,11 +197,34 @@ function App() {
             onClick={resetTimer}
           >
             Réinitialiser
-          </Button>
-        </Box>
-      </VStack>
-    </Box>
+          &lt;/Button>
+        &lt;/Box>
+      &lt;/VStack>
+    &lt;/Box>
   );
 }
 
 export default App;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#root">root</a></li><li><a href="global.html#rootElement">rootElement</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Aug 28 2024 06:00:42 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

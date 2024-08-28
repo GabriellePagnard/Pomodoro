@@ -1,0 +1,11 @@
+{
+  "source": {
+    "include": ["src/App.jsx", "src/main.jsx", "src/index.css"],
+    "exclude": ["node_modules"],
+    "includePattern": ".+\\.jsx?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "opts": {
+    "destination": "./docs"
+  }
+}

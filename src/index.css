@@ -1,150 +1,211 @@
-body.chakra-ui-light {
+/**
+ * Styles pour le thème clair avec Chakra UI.
+ * Applique un fond d'écran spécifique et centre l'image de fond.
+ */
+ body.chakra-ui-light {
   background-image: url('/assets/bg.jpg') !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
+  background-size: cover !important; /* Assure que l'image couvre tout l'écran */
+  background-position: center !important; /* Centre l'image de fond */
+  background-repeat: no-repeat !important; /* Empêche la répétition de l'image */
 }
 
-
-/* Styles globaux pour la page */
+/**
+ * Styles globaux pour la page.
+ * Applique un fond d'écran et centre le contenu au milieu de la page.
+ */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background-image: url('/assets/bg.jpg') !important; /* Assurez-vous que le chemin est correct */
   background-size: cover; /* Assure que l’image couvre tout l’écran */
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
+  background-position: center; /* Centre l'image de fond */
+  background-repeat: no-repeat; /* Empêche la répétition de l'image */
+  height: 100vh; /* Hauteur de la page égale à la hauteur de la fenêtre */
+  width: 100vw; /* Largeur de la page égale à la largeur de la fenêtre */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* Centre le contenu verticalement */
+  justify-content: center; /* Centre le contenu horizontalement */
 }
 
-/* Le conteneur principal pour centrer le contenu */
+/**
+ * Le conteneur principal pour centrer le contenu.
+ * Utilisé pour s'assurer que le contenu est au centre de la page.
+ */
 #root {
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* Centre le contenu verticalement */
+  justify-content: center; /* Centre le contenu horizontalement */
   background-color: transparent; /* Évite de recouvrir l'image d'arrière-plan */
 }
 
-/* Conteneur pour le timer et les boutons */
+/**
+ * Conteneur pour le timer et les boutons.
+ * Applique des styles pour centrer les éléments et ajouter un fond semi-transparent.
+ */
 .vstack-container {
   display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column; /* Aligne les éléments en colonne */
+  align-items: center; /* Centre les éléments horizontalement */
+  justify-content: center; /* Centre les éléments verticalement */
   background-color: rgba(255, 255, 255, 0.3); /* Transparence du fond */
   border-radius: 16px; /* Coins arrondis */
   padding: 2rem; /* Espacement interne */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Légère ombre portée */
 }
 
-/* Autres styles additionnels pour les logos et animations */
+/**
+ * Styles pour les logos et les animations.
+ * Applique des effets de transition et des filtres aux logos.
+ */
 .logo {
   height: 6em;
   padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  will-change: filter; /* Indique au navigateur de préparer les changements de filtre */
+  transition: filter 300ms; /* Transition des filtres en 300ms */
 }
 
+/**
+ * Effet hover pour les logos.
+ * Applique une ombre portée aux logos lorsqu'ils sont survolés.
+ */
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #646cffaa); /* Ombre portée bleue */
 }
 
+/**
+ * Effet hover spécifique pour le logo React.
+ * Applique une ombre portée spéciale pour le logo React.
+ */
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #61dafbaa); /* Ombre portée bleue React */
 }
 
+/**
+ * Animation pour faire tourner les logos.
+ * L'animation fait tourner les logos à 360 degrés en boucle.
+ */
 @keyframes logo-spin {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0deg); /* Départ de l'animation à 0 degré */
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(360deg); /* Fin de l'animation à 360 degrés */
   }
 }
 
-/* Animation du logo */
+/**
+ * Applique l'animation de rotation aux logos uniquement si les préférences système
+ * ne désactivent pas les animations (préférence pour réduire le mouvement).
+ */
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+    animation: logo-spin infinite 20s linear; /* Animation continue de 20s */
   }
 }
 
-/* Styles pour les cartes */
+/**
+ * Styles pour les cartes.
+ * Applique un padding interne aux éléments de type "card".
+ */
 .card {
   padding: 2em;
 }
 
-/* Styles pour les liens */
+/**
+ * Styles pour les liens.
+ * Change la couleur des liens et applique un effet hover.
+ */
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: #646cff; /* Couleur de texte bleue pour les liens */
+  text-decoration: inherit; /* Conserve les décorations de texte par défaut */
 }
 
+/**
+ * Effet hover pour les liens.
+ * Change la couleur des liens lorsqu'ils sont survolés.
+ */
 a:hover {
-  color: #535bf2;
+  color: #535bf2; /* Couleur de texte bleue plus foncée au survol */
 }
 
-/* Styles pour le mode clair */
+/**
+ * Styles pour le mode clair.
+ * Applique des couleurs spécifiques lorsque le mode clair est activé.
+ */
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: transparent; /* Mettre transparent pour éviter de recouvrir l'arrière-plan */
+    color: #213547; /* Couleur de texte foncée */
+    background-color: transparent; /* Évite de recouvrir l'arrière-plan */
   }
 
   a:hover {
-    color: #747bff;
+    color: #747bff; /* Couleur de texte bleue claire au survol */
   }
 
   button {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Fond des boutons en gris clair */
   }
 }
 
-/* Styles pour les boutons */
+/**
+ * Styles pour les boutons.
+ * Applique des bordures arrondies, une transition de bordure et un effet hover.
+ */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  border-radius: 8px; /* Coins arrondis */
+  border: 1px solid transparent; /* Bordure transparente */
+  padding: 0.6em 1.2em; /* Espacement interne */
+  font-size: 1em; /* Taille de police */
+  font-weight: 500; /* Poids de police moyen */
+  font-family: inherit; /* Utilise la police héritée */
+  background-color: #1a1a1a; /* Fond des boutons en gris foncé */
+  cursor: pointer; /* Affiche un curseur pointeur */
+  transition: border-color 0.25s; /* Transition des bordures en 250ms */
 }
 
+/**
+ * Effet hover pour les boutons.
+ * Change la couleur de la bordure lorsqu'ils sont survolés.
+ */
 button:hover {
-  border-color: #646cff;
+  border-color: #646cff; /* Bordure bleue au survol */
 }
 
+/**
+ * Styles pour le focus des boutons.
+ * Applique une bordure de focus pour les boutons lorsque le focus est visible.
+ */
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto -webkit-focus-ring-color; /* Bordure de focus automatique */
 }
 
-/* Autres styles globaux */
+/**
+ * Styles globaux pour les éléments racine.
+ * Applique des paramètres de typographie et de rendu de texte optimisé.
+ */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color-scheme: light dark; /* Supporte les thèmes clairs et foncés */
+  color: rgba(255, 255, 255, 0.87); /* Couleur de texte principale */
 
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; /* Améliore la lisibilité du texte */
+  -webkit-font-smoothing: antialiased; /* Lissage de police pour WebKit */
+  -moz-osx-font-smoothing: grayscale; /* Lissage de police pour macOS */
 }
 
+/**
+ * Styles pour les titres de niveau 1.
+ * Applique une grande taille de police et un interligne serré.
+ */
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 3.2em; /* Grande taille de police pour les titres */
+  line-height: 1.1; /* Interligne serré */
 }
