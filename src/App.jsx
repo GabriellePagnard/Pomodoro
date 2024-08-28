@@ -16,6 +16,10 @@ function App() {
   const [workMinutes, setWorkMinutes] = useState(25); // Durée personnalisée de travail
   const [breakMinutes, setBreakMinutes] = useState(5); // Durée personnalisée de pause
 
+  // États pour les inputs (comme chaînes de caractères pour gérer la saisie)
+  const [workInput, setWorkInput] = useState(String(workMinutes));
+  const [breakInput, setBreakInput] = useState(String(breakMinutes));
+
   // Fonction pour jouer un son d'alerte à la fin du minuteur
   const playSound = () => {
     const audio = new Audio('/assets/alarm.mp3');
@@ -82,6 +86,28 @@ function App() {
     if (savedBreakMinutes) setBreakMinutes(Number(savedBreakMinutes));
   }, []);
 
+  // Gère la saisie des minutes de travail
+  const handleWorkInputChange = (e) => {
+    const value = e.target.value;
+    if (!isNaN(value) && value !== '') {
+      setWorkInput(value);
+      setWorkMinutes(Number(value));
+    } else if (value === '') {
+      setWorkInput('');
+    }
+  };
+
+  // Gère la saisie des minutes de pause
+  const handleBreakInputChange = (e) => {
+    const value = e.target.value;
+    if (!isNaN(value) && value !== '') {
+      setBreakInput(value);
+      setBreakMinutes(Number(value));
+    } else if (value === '') {
+      setBreakInput('');
+    }
+  };
+
   return (
     <Box
       display="inline-flex"
@@ -119,10 +145,10 @@ function App() {
             <FormLabel color="gray.800" fontWeight="bold">Durée de travail (minutes)</FormLabel>
             <Input
               placeholder="Durée de travail"
-              value={workMinutes}
-              onChange={(e) => setWorkMinutes(Number(e.target.value))}
+              value={workInput}
+              onChange={handleWorkInputChange}
               size="sm"
-              type="number"
+              type="text" // Utilise "text" pour gérer correctement la saisie
               width="100%"
               focusBorderColor="gray.400"
               borderColor="gray.400"
@@ -134,10 +160,10 @@ function App() {
             <FormLabel color="gray.800" fontWeight="bold">Durée de pause (minutes)</FormLabel>
             <Input
               placeholder="Durée de pause"
-              value={breakMinutes}
-              onChange={(e) => setBreakMinutes(Number(e.target.value))}
+              value={breakInput}
+              onChange={handleBreakInputChange}
               size="sm"
-              type="number"
+              type="text" // Utilise "text" pour gérer correctement la saisie
               width="100%"
               focusBorderColor="gray.400"
               borderColor="gray.400"
