@@ -77,6 +77,9 @@ Pour l'utiliser : [Pomodoro 🚀](https://scintillating-cranachan-22bbc3.netlify
    --- > src/App.jsx : Le composant principal de l'application   
    --- > src/index.css : La feuille de style principale   
 - images/ : Dossier pour les images et autres captures d'écran du projet   
+  
+<br>
+<br>
 
 ## 🛠️ Installation et Utilisation
 
