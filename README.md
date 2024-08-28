@@ -38,6 +38,13 @@ Voici à quoi ressemble l'application :
 <br>
 <br>
 
+## 🌐 Lien direct
+
+Pour l'utiliser : [Pomodoro 🚀](https://scintillating-cranachan-22bbc3.netlify.app/)   
+
+<br>
+<br>
+
 ## 🔧 Technologies Utilisées
 
 ⚛️ React - Librairie JavaScript pour construire l'interface utilisateur   
