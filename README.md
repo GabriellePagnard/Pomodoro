@@ -34,12 +34,20 @@ Voici à quoi ressemble l'application :
 
 ![screenshot ordinateur chrono pause](/images/screenshot_descktop_chrono_pause.jpg)   
 
+![screenshot mobile demarrage](/images/screenshot_mobile_demarrage.jpg)   
+
+![screenshot mobile chrono boulot](/images/screenshot_mobile_chrono_boulot.jpg)   
+
+![screenshot mobile chrono pause](/images/screenshot_mobile_chrono_pause.jpg)   
+
+
+
 <br>
 <br>
 
 [Démo vidéo du projet sur ordinateur 🎥](https://www.youtube.com/watch?v=4AXiL1ukxo8)
 
-[Démo vidéo du projet sur mobile 🎥]()
+[Démo vidéo du projet sur mobile 🎥](https://www.youtube.com/watch?v=8v9smi-Orgk)
 
 <br>
 <br>
